@@ -1,1 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Details Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        input[type="text"], input[type="email"], input[type="number"], select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
 
+<div class="container">
+    <h2>Employee Details Form</h2>
+    <form id="employeeForm">
+        <label for="employeeName">Employee Name:</label>
+        <input type="text" id="employeeName" name="employeeName" placeholder="Enter employee name" required>
+
+        <label for="employeeEmail">Email Address:</label>
+        <input type="email" id="employeeEmail" name="employeeEmail" placeholder="Enter employee email" required>
+
+        <label for="employeeDept">Department:</label>
+        <select id="employeeDept" name="employeeDept" required>
+            <option value="" disabled selected>Select department</option>
+            <option value="HR">HR</option>
+            <option value="Engineering">Engineering</option>
+            <option value="Sales">Sales</option>
+            <option value="Marketing">Marketing</option>
+        </select>
+
+        <label for="employeeID">Employee ID:</label>
+        <input type="number" id="employeeID" name="employeeID" placeholder="Enter employee ID" required>
+
+        <label for="employeePosition">Position:</label>
+        <input type="text" id="employeePosition" name="employeePosition" placeholder="Enter employee position" required>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="output" style="margin-top: 20px;">
+        <h3>Submitted Details</h3>
+        <pre id="submittedData"></pre>
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById('employeeForm');
+    const output = document.getElementById('submittedData');
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        
+        const employeeName = document.getElementById('employeeName').value;
+        const employeeEmail = document.getElementById('employeeEmail').value;
+        const employeeDept = document.getElementById('employeeDept').value;
+        const employeeID = document.getElementById('employeeID').value;
+        const employeePosition = document.getElementById('employeePosition').value;
+
+        const employeeDetails = {
+            name: employeeName,
+            email: employeeEmail,
+            department: employeeDept,
+            id: employeeID,
+            position: employeePosition
+        };
+
+        // Display submitted data in JSON format
+        output.textContent = JSON.stringify(employeeDetails, null, 2);
+    });
+</script>
+
+</body>
+</html>
