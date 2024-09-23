@@ -1,63 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporting and Analytics Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        input[type="text"], input[type="date"], select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+        textarea {
+            resize: vertical;
+        }
+    </style>
+</head>
 <body>
 
 <div class="container">
-    <h2>Employee Details Form</h2>
-    <form id="employeeForm">
-        <label for="employeeName">Employee Name:</label>
-        <input type="text" id="employeeName" name="employeeName" placeholder="Enter employee name" required>
-
-        <label for="employeeEmail">Email Address:</label>
-        <input type="email" id="employeeEmail" name="employeeEmail" placeholder="Enter employee email" required>
-
-        <label for="employeeDept">Department:</label>
-        <select id="employeeDept" name="employeeDept" required>
-            <option value="" disabled selected>Select department</option>
-            <option value="HR">HR</option>
-            <option value="Engineering">Engineering</option>
-            <option value="Sales">Sales</option>
-            <option value="Marketing">Marketing</option>
+    <h2>Reporting and Analytics Form</h2>
+    <form id="analyticsForm">
+        <label for="reportType">Report Type:</label>
+        <select id="reportType" name="reportType" required>
+            <option value="" disabled selected>Select report type</option>
+            <option value="Sales Analysis">Sales Analysis</option>
+            <option value="Employee Performance">Employee Performance</option>
+            <option value="Customer Feedback">Customer Feedback</option>
+            <option value="Website Traffic">Website Traffic</option>
         </select>
 
-        <label for="employeeID">Employee ID:</label>
-        <input type="number" id="employeeID" name="employeeID" placeholder="Enter employee ID" required>
+        <label for="dateFrom">Start Date:</label>
+        <input type="date" id="dateFrom" name="dateFrom" required>
 
-        <label for="employeePosition">Position:</label>
-        <input type="text" id="employeePosition" name="employeePosition" placeholder="Enter employee position" required>
+        <label for="dateTo">End Date:</label>
+        <input type="date" id="dateTo" name="dateTo" required>
 
-        <input type="submit" value="Submit">
+        <label for="focusArea">Focus Area:</label>
+        <textarea id="focusArea" name="focusArea" placeholder="Enter key areas to focus the analysis" required></textarea>
+
+        <label for="additionalNotes">Additional Notes:</label>
+        <textarea id="additionalNotes" name="additionalNotes" placeholder="Enter any additional notes or requirements" rows="4"></textarea>
+
+        <input type="submit" value="Submit Report">
     </form>
 
     <div id="output" style="margin-top: 20px;">
-        <h3>Submitted Details</h3>
+        <h3>Submitted Report Details</h3>
         <pre id="submittedData"></pre>
     </div>
 </div>
 
 <script>
-    const form = document.getElementById('employeeForm');
+    const form = document.getElementById('analyticsForm');
     const output = document.getElementById('submittedData');
 
     form.addEventListener('submit', function (e) {
         e.preventDefault();
         
-        const employeeName = document.getElementById('employeeName').value;
-        const employeeEmail = document.getElementById('employeeEmail').value;
-        const employeeDept = document.getElementById('employeeDept').value;
-        const employeeID = document.getElementById('employeeID').value;
-        const employeePosition = document.getElementById('employeePosition').value;
+        const reportType = document.getElementById('reportType').value;
+        const dateFrom = document.getElementById('dateFrom').value;
+        const dateTo = document.getElementById('dateTo').value;
+        const focusArea = document.getElementById('focusArea').value;
+        const additionalNotes = document.getElementById('additionalNotes').value;
 
-        const employeeDetails = {
-            name: employeeName,
-            email: employeeEmail,
-            department: employeeDept,
-            id: employeeID,
-            position: employeePosition
+        const reportDetails = {
+            type: reportType,
+            startDate: dateFrom,
+            endDate: dateTo,
+            focus: focusArea,
+            notes: additionalNotes
         };
 
         // Display submitted data in JSON format
-        output.textContent = JSON.stringify(employeeDetails, null, 2);
+        output.textContent = JSON.stringify(reportDetails, null, 2);
     });
 </script>
 
